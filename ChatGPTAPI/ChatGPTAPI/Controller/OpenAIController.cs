@@ -8,17 +8,19 @@ namespace ChatGPTAPI.Controller
     [ApiController]
     public class OpenAiController : ControllerBase
     {
-        public OpenAiController()
+        private readonly IConfiguration _configuration;
+        public OpenAiController(IConfiguration configuration)
         {
-
+            _configuration = configuration;
         }
+
         [HttpGet]
         [Route("UseChatGPT")]
         public async Task<IActionResult> UseChatGPT(string query)
         {
             try
             {
-                var openai = new OpenAIAPI("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");
+                var openai = new OpenAIAPI(_configuration.GetValue<string>("openAPIAIKey"));
                 var completionRequest = new CompletionRequest
                 {
                     Prompt = query,
