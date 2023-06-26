@@ -15,7 +15,6 @@ namespace ChatGPTAPI.Controller
         }
 
         [HttpGet]
-        [Route("UseChatGPT")]
         public async Task<IActionResult> UseChatGPT(string query)
         {
             try
